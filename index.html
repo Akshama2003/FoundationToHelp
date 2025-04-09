@@ -68,40 +68,35 @@
     </div>
     </div>
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            const slides = document.querySelectorAll('.slide');
-            const heroText = document.querySelector('.hero-text');
-            let currentSlide = 0;
+    document.addEventListener("DOMContentLoaded", function () {
+        const slides = document.querySelectorAll('.slide');
+        const heroText = document.querySelector('.hero-text');
+        let currentSlide = 0;
 
-            function showSlide(index) {
-                slides.forEach((slide, i) => {
-                    slide.classList.remove('active');
-                    if (i === index) {
-                        slide.classList.add('active');
-                    }
-                });
-            }
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.remove('active');
+                slide.style.opacity = '0';
+            });
+            slides[index].classList.add('active');
+            slides[index].style.opacity = '1';
+        }
 
-            function nextSlide() {
-                currentSlide = (currentSlide + 1) % slides.length;
-                showSlide(currentSlide);
-            }
-            
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % slides.length;
+            showSlide(currentSlide);
+        }
 
-            setInterval(nextSlide, 3000);
+        setInterval(nextSlide, 3000);
 
-            // Initial animations
-            setTimeout(() => {
-                slides[0].style.opacity = 1;
-                heroText.style.opacity = 1;
-                heroText.style.transform = 'translate(-50%, -50%)';
-                const line = document.querySelector('.hero-text h1::after');
-                if (line) {
-                    line.style.opacity = 1;
-                }
-            }, 500);
-        });
-    </script>
+        // Initial animations
+        setTimeout(() => {
+            slides[0].style.opacity = 1;
+            heroText.style.opacity = 1;
+            heroText.style.transform = 'translate(-50%, -50%)';
+        }, 500);
+    });
+</script>
 </body>
 
 </html>
